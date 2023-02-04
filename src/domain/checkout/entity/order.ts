@@ -43,6 +43,14 @@ export default class Order {
     return true;
   }
 
+  addItem(item: OrderItem): void {
+    if(item == null) {
+      throw new Error("Item is required");
+    }
+    this._items.push(item);
+    this._total = this.total();
+  }
+
   total(): number {
     return this._items.reduce((acc, item) => acc + item.price, 0);
   }
